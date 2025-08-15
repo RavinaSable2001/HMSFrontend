@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">  <!-- ✅ Push content to the right -->
+      <li class="nav-item">
+        <button class="btn btn-light fw-semibold" (click)="goBack()">⬅ Back to Dashboard</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary text-center">My Patients</h2>
+
+  <!-- Loading message -->
+  <div *ngIf="loading" class="alert alert-info text-center">
+    <strong>Loading patients...</strong>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="error" class="alert alert-danger text-center">
+    {{ error }}
+  </div>
+
+  <!-- Patients table -->
+  <div *ngIf="!loading && patients.length > 0" class="table-responsive">
+    <table class="table table-striped table-hover table-bordered shadow-sm">
+      <thead class="table-primary">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Disease</th>
+          <th>Doctor Name</th>
+          <th>Specialization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients">
+          <td>{{ patient.patientId }}</td>
+          <td>{{ patient.name }}</td>
+          <td>{{ patient.contactNo }}</td>
+          <td>{{ patient.disease }}</td>
+          <td>{{ patient.doctor?.name || 'Not assigned' }}</td>
+          <td>{{ patient.doctor?.specialization || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No patients message -->
+  <div *ngIf="!loading && patients.length === 0" class="alert alert-warning text-center">
+    No patients assigned yet.
+  </div>
+</div>

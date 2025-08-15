@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+</nav>
+<div class="container mt-5" style="max-width: 400px;">
+  <h2 class="text-center mb-4">Doctor Login</h2>
+
+  <form (ngSubmit)="checkLogin()">
+    <!-- Name Input -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        class="form-control" 
+        [(ngModel)]="name" 
+        name="name" 
+        required
+        placeholder="Enter your name">
+    </div>
+
+    <!-- Password Input -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        class="form-control" 
+        [(ngModel)]="password" 
+        name="password" 
+        required
+        placeholder="Enter your password">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+
+     <div class="card-footer text-center">
+        <a routerLink="/home" class="text-muted small">← Back to Home</a>
+      </div>
+  </form>
+</div>

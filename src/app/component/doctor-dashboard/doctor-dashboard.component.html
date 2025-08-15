@@ -1,0 +1,51 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <button class="btn btn-sm btn-outline-light" (click)="logOut()">Logout</button>
+  </div>
+</nav>
+
+
+
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Doctor Dashboard</h2>
+  <div class="row justify-content-center">
+    <!-- View Patients -->
+    <div class="col-md-3">
+      <div class="card text-white bg-primary mb-3 text-center">
+        <div class="card-body">
+          <h5 class="card-title">View Patients</h5>
+          <p class="card-text">See your assigned patients and their details.</p>
+          <button class="btn btn-light" (click)="goToPatients()">Go</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Medicines -->
+    <div class="col-md-3">
+      <div class="card text-white bg-success mb-3 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Manage Medicines</h5>
+          <p class="card-text">Add or update medicine records for patients.</p>
+          <button class="btn btn-light" (click)="goToMedicines()">Go</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Appointments -->
+    <div class="col-md-3">
+      <div class="card text-white bg-info mb-3 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Appointments</h5>
+          <p class="card-text">Check upcoming patient appointments.</p>
+          <button class="btn btn-light" (click)="goToAppointments()">Go</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">  <!-- ✅ Push content to the right -->
+      <li class="nav-item">
+        <button class="btn btn-light fw-semibold" (click)="goBack()">⬅ Back to Dashboard</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-4" style="max-width: 900px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white text-center">
+      <h5 class="mb-0">{{ isEditMode ? 'Update' : 'Add' }} Appointment</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="saveAppointment()">
+        <!-- Doctor -->
+        <div class="mb-3">
+          <label class="form-label">Doctor</label>
+          <select class="form-select" [(ngModel)]="appointment.doctor.doctorId" name="doctorId" required>
+            <option value="0" disabled>Select Doctor</option>
+            <option *ngFor="let doctor of doctors" [value]="doctor.doctorId">
+              {{ doctor.doctorId }} - {{ doctor.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Patient -->
+        <div class="mb-3">
+          <label class="form-label">Patient</label>
+          <select class="form-select" [(ngModel)]="appointment.patient.patientId" name="patientId" required>
+            <option value="0" disabled>Select Patient</option>
+            <option *ngFor="let patient of patients" [value]="patient.patientId">
+              {{ patient.patientId }} - {{ patient.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Appointment Date -->
+        <div class="mb-3">
+          <label class="form-label">Date</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="appointment.appointmentDate"
+            name="appointmentDate"
+            required
+          />
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="appointment.status"
+            name="status"
+            placeholder="e.g. Confirmed"
+            required
+          />
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-end">
+          <button
+            type="submit"
+            class="btn btn-success me-2"
+            [disabled]="appointment.doctor.doctorId === 0 || appointment.patient.patientId === 0"
+          >
+            {{ isEditMode ? 'Update' : 'Save' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- List Heading -->
+  <h5 class="text-center mt-5 mb-3">All Appointments</h5>
+
+  <!-- Appointments List Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-sm align-middle">
+      <thead class="table-light">
+        <tr>
+          <th style="width: 50px;">#</th>
+          <th style="min-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            Doctor
+          </th>
+          <th style="min-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            Patient
+          </th>
+          <th style="width: 140px;">Date</th>
+          <th style="min-width: 140px;">Status</th>
+          <th style="width: 160px; text-align: center; white-space: nowrap;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let app of appointments; let i = index">
+          <td>{{ app.id }}</td>
+          <td
+            title="{{ app.doctor?.name }}"
+            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+          >
+            {{ app.doctor?.doctorId }} - {{ app.doctor?.name }}
+          </td>
+          <td
+            title="{{ app.patient?.name }}"
+            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+          >
+            {{ app.patient.patientId }} - {{ app.patient.name }}
+          </td>
+          <td>{{ app.appointmentDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ app.status }}</td>
+          <td>
+            <div class="d-flex gap-2 justify-content-center">
+              <button class="btn btn-sm btn-primary" (click)="editAppointment(app)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteAppointment(app.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

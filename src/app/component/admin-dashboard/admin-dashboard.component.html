@@ -1,0 +1,63 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <button class="btn btn-sm btn-outline-light" (click)="logOut()">Logout</button>
+  </div>
+</nav>
+
+<!-- Dashboard -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">Welcome Admin 👩‍⚕️</h2>
+
+  <div class="row g-4 justify-content-center">
+
+    <!-- Doctors Card -->
+    <div class="col-md-3">
+      <div class="card h-100 text-white bg-gradient bg-primary dashboard-card" (click)="goToDoctors()">
+        <div class="card-body text-center">
+          <i class="bi bi-person-badge fs-1 mb-2"></i>
+          <h5 class="card-title">Manage Doctors</h5>
+          <p class="card-text">View, Add, Update, Delete doctors</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patients Card -->
+    <div class="col-md-3">
+      <div class="card h-100 text-white bg-gradient bg-success dashboard-card" (click)="goToPatient()">
+        <div class="card-body text-center">
+          <i class="bi bi-people-fill fs-1 mb-2"></i>
+          <h5 class="card-title">Manage Patients</h5>
+          <p class="card-text">View, Add, Update, Delete patients</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medicines Card -->
+    <div class="col-md-3">
+      <div class="card h-100 text-dark bg-warning dashboard-card" (click)="goToMedicine()">
+        <div class="card-body text-center">
+          <i class="bi bi-capsule-pill fs-1 mb-2"></i>
+          <h5 class="card-title">Manage Medicines</h5>
+          <p class="card-text">View, Add, Update, Delete medicines</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointments Card -->
+    <div class="col-md-3">
+      <div class="card h-100 text-white bg-info dashboard-card" (click)="goToAppointments()">
+        <div class="card-body text-center">
+          <i class="bi bi-calendar-check fs-1 mb-2"></i>
+          <h5 class="card-title">Manage Appointments</h5>
+          <p class="card-text">View, Add, Update, Delete appointments</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

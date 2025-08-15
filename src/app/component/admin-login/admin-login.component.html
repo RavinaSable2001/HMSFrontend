@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+</nav>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0">
+      <div class="card-header text-center bg-primary text-white">
+        <h5 class="mb-0">Admin Login</h5>
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)="checkLogin()" #loginForm="ngForm">
+            
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="Enter username"
+              [(ngModel)]="username"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              [(ngModel)]="password"
+              required>
+          </div>
+
+          <div class="d-grid">
+           <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-footer text-center">
+        <a routerLink="/home" class="text-muted small">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+
+<nav class="navbar navbar-expand-md px-4 shadow-sm" style="background: linear-gradient(to right, #00c6ff, #0072ff);">
+  <a class="navbar-brand fw-bold" href="#">🏥 LifeLine Hospital</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+   <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">  <!-- ✅ Push content to the right -->
+      <li class="nav-item">
+        <button class="btn btn-light fw-semibold" (click)="goBack()">⬅ Back to Dashboard</button>
+      </li>
+    </ul>
+  </div>
+  
+</nav>
+<div class="container mt-4">
+
+  <div class="card shadow-lg rounded p-4">
+    <h3 class="text-center text-primary mb-4">
+      {{ isEditing ? 'Update Doctor' : 'Add New Doctor' }}
+    </h3>
+
+    <form (ngSubmit)="isEditing ? updateDoctor() : saveDoctor()" #doctorForm="ngForm">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="name" class="form-label">Doctor Name</label>
+          <input type="text" id="name" class="form-control rounded-pill shadow-sm"
+                 [(ngModel)]="doctor.name" name="name" required placeholder="Enter Doctor Name" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="contact" class="form-label">Contact No</label>
+          <input type="text" id="contact" class="form-control rounded-pill shadow-sm"
+                 [(ngModel)]="doctor.contactno" name="contactno" required placeholder="Enter Contact Number" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="specialization" class="form-label">Specialization</label>
+          <input type="text" id="specialization" class="form-control rounded-pill shadow-sm"
+                 [(ngModel)]="doctor.specialization" name="specialization" required placeholder="Enter Specialization" />
+        </div>
+      </div>
+
+      <!-- Form Buttons -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-success me-2 px-4"
+                [disabled]="doctorForm.invalid">
+          {{ isEditing ? 'Update' : 'Save' }}
+        </button>
+        <button type="button" class="btn btn-secondary px-4" (click)="resetForm()">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Doctor Table -->
+  <div class="card mt-4 shadow rounded">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">Doctor List</h4>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact No</th>
+            <th>Specialization</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of doctors">
+            <td>{{ d.doctorId }}</td>
+            <td>{{ d.name }}</td>
+            <td>{{ d.contactno }}</td>
+            <td>{{ d.specialization }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-info me-2" (click)="editDr(d)">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteDr(d.doctorId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
